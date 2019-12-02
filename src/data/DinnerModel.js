@@ -1,10 +1,10 @@
 import ObservableModel from "./ObservableModel";
-import "./apiConfig";
+import {ENDPOINT, API_KEY} from "./apiConfig";
 
-const BASE_URL = "ENDPOINT";
+const BASE_URL = ENDPOINT;
 const httpOptions = {
-  headers: { "X-Mashape-Key": "API_KEY" },
-  method: 'GET'
+  headers: { "X-Mashape-Key": API_KEY },
+  method: 'GET' 
 };
 
 class DinnerModel extends ObservableModel {
@@ -38,6 +38,7 @@ class DinnerModel extends ObservableModel {
    * @returns {Promise<any>}
    */
   getAllDishes() {
+    console.log(BASE_URL);  
     const url = `${BASE_URL}/recipes/search`;
     return fetch(url, httpOptions).then(this.processResponse);
   }
