@@ -2,6 +2,7 @@
   <div class="Dishes">
     <h3>Dishes</h3>
     <ul>
+       <!-- !! THIS COULD BE MADE REUSABLE FOR OTHER VIEWS-->
       <em v-if='status === "LOADING"'>Loading...</em>
       <b v-else-if='status === "ERROR"'>Failed to load data, please try again</b>
       <li v-for="dish in dishes" :id="dish.id" :key="dish.id">
@@ -14,6 +15,7 @@
 <script>
   // Alternative to passing the model as the component property,
   // we can import the model instance directly
+  // ?? WHICH IS PREFERED ?
   import modelInstance from "../data/DinnerModel";
 
   export default {

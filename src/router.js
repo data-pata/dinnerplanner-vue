@@ -4,6 +4,7 @@ import Welcome from "@/components/Welcome";
 import SelectDish from "@/components/SelectDish";
 import modelInstance from "@/data/DinnerModel"; 
 import Details from "@/components/Details";
+import Printout from "@/components/Details";
 
 Vue.use(Router);
 
@@ -21,11 +22,16 @@ export default new Router({
       props: { model: modelInstance }
     },
     {
-      path: "/details", // add :[dish-id]
-      name: "Details",
+      path: '/details', // start of dynamic route /:id
+      name: 'Details',
       component: Details,
-      props: { model: modelInstance } 
-
+      props: {model: modelInstance} 
+    },
+    {
+      path: '/printout',
+      name: 'Printout',
+      component: Printout,
+      props: {model: modelInstance}
     }
 
   ]

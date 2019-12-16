@@ -2,7 +2,7 @@
   <div class="select-dish">
     <h2>This is the Select Dish screen</h2>
     <!-- We pass the model as property to the Sidebar component
-          KE PASA -->
+      ??ok but not to Dishes component or other model reliant comps? --> 
     <sidebar :model="this.model"/>
     <dishes />
   </div>
