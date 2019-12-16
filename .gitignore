@@ -5,6 +5,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 apiConfig.js
+notes.txt
 
 # Editor directories and files
 .idea
