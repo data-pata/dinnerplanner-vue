@@ -1,10 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Welcome from "@/components/Welcome";
-import SelectDish from "@/components/SelectDish";
+import Welcome from "@/views/Welcome";
+import SelectDish from "@/views/SelectDish";
 import modelInstance from "@/data/DinnerModel"; 
-import Details from "@/components/Details";
-import Printout from "@/components/Details";
+import Details from "@/views/Details";
+import PrintOut from "@/views/PrintOut";
 
 Vue.use(Router);
 
@@ -29,8 +29,8 @@ export default new Router({
     },
     {
       path: '/printout',
-      name: 'Printout',
-      component: Printout,
+      name: 'PrintOut',
+      component: PrintOut,
       props: {model: modelInstance}
     }
 
