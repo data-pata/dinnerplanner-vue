@@ -5,12 +5,12 @@
       People:
       <input
         type="number"
-        :value="numberOfGuests"
-        @input="onDidChangeNumberOfGuests"
-        @change="onDidChangeNumberOfGuests"
+        :value="numOfGuests"
+        @input="onDidChangeNumOfGuests"
+        @change="onDidChangeNumOfGuests"
       >
       <br>
-      Total number of guests: {{ numberOfGuests }}
+      Total number of guests: {{ numOfGuests }}
     </p>
   </div>
 </template>
@@ -30,23 +30,27 @@ export default {
     this.model.removeObserver(this);
   },
 
-  // we define and initalise the data we want to use and modify in the component
-  data() {
-    return {
-      numberOfGuests: this.model.getNumberOfGuests()
-    };
+  //we define and initalise the data we want to use and modify in the component
+  // data() {
+  //   return {
+  //     numOfGuests: this.model.getNumberOfGuests()
+  //   };
+  // },
+  computed: {
+    numOfGuests() {
+      return this.$store.state.numOfGuests
+    }
   },
-
   methods: {
     // in our update function we modify the the property of
     // the compoented which will cause the component to re-render
-    update() {
-      this.numberOfGuests = this.model.getNumberOfGuests();
-    },
+    // update() {
+    //   this.numberOfGuests = this.model.getNumberOfGuests();
+    // },
 
     // our handler for the input's on change event
-    onDidChangeNumberOfGuests(e) {
-      this.model.setNumberOfGuests(+e.target.value);
+    onDidChangeNumOfGuests(e) {
+      this.$store.dispatch('changeNumOfGuests',+e.target.value);
     }
   }
 };
