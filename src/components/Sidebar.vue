@@ -4,6 +4,7 @@
     <p>
       People:
       <input
+        class=""
         type="number"
         :value="numOfGuests"
         @input="onDidChangeNumOfGuests"
