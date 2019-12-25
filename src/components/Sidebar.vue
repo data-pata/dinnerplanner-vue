@@ -12,6 +12,7 @@
       <br>
       Total number of guests: {{ numOfGuests }}
     </p>
+    <p>THIS IS THE MENU TABLE</p>
   </div>
 </template>
 

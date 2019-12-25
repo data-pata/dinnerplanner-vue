@@ -3,7 +3,7 @@ import {ENDPOINT, API_KEY} from "./apiConfig";
 
 const BASE_URL = ENDPOINT;
 const httpOptions = {
-  headers: { "X-Mashape-Key": API_KEY },
+  headers: { 'X-Mashape-Key': API_KEY },
   method: 'GET' 
 };
 
@@ -39,7 +39,7 @@ class DinnerModel extends ObservableModel {
    */
   getAllDishes() {
     console.log(BASE_URL);  
-    const url = `${BASE_URL}/recipes/search`;
+    const url = `${BASE_URL}/recipes/search?query=''&type=''`;
     return fetch(url, httpOptions).then(this.processResponse);
   }
 
