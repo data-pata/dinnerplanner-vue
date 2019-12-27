@@ -3,7 +3,7 @@ import Router from "vue-router";
 import Welcome from "@/views/Welcome";
 import SelectDish from "@/views/SelectDish";
 import modelInstance from "@/data/DinnerModel"; 
-import Details from "@/views/Details";
+import Details from "@/views/DetailsView";
 import PrintOut from "@/views/PrintOut";
 
 Vue.use(Router);
@@ -12,24 +12,24 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "Welcome",
+      name: "welcome",
       component: Welcome
     },
     {
       path: "/search",
-      name: "SelectDish",
+      name: "selectdish",
       component: SelectDish,
       props: { model: modelInstance }
     },
     {
-      path: '/details', // start of dynamic route /:id
-      name: 'Details',
+      path: '/details/:id', // start of dynamic route /:id
+      name: 'details',
       component: Details,
       props: {model: modelInstance} 
     },
     {
       path: '/printout',
-      name: 'PrintOut',
+      name: 'printout',
       component: PrintOut,
       props: {model: modelInstance}
     }

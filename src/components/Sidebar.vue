@@ -4,21 +4,39 @@
     <p>
       People:
       <input
-        class=""
+        class="pure-u-2-24"
         type="number"
         :value="numOfGuests"
         @input="onDidChangeNumOfGuests"
         @change="onDidChangeNumOfGuests"
+        min="1"
       >
-      <br>
-      Total number of guests: {{ numOfGuests }}
     </p>
-    <p>THIS IS THE MENU TABLE</p>
+    <table class="pure-table pure-table-striped">
+    <thead>
+        <tr>
+            <th>ingredient</th>
+            <th>price</th>
+            <th>remove</th>
+        </tr>
+    </thead>
+    <tbody>     
+        <tr>
+        <!-- see https://vuejs.org/v2/guide/list.html#Maintaining-State on v-bind:key attribute-->
+        <tr class="" v-for="dish in menu" :key="dish.id">
+            <td>{{dish.title}}</td>
+            <td>{{dish.pricePerServing * numOfGuests}}</td>
+            <td> X </td>
+        </tr>
+      </tbody>
+      <p>Total price: [totalPrice]</p>
+  </table>
   </div>
 </template>
 
 <script>
 export default {
+
   props: ["model"],
   // this methods is called by React lifecycle when the
   // component is created that's a good place to setup model observer
@@ -41,6 +59,9 @@ export default {
   computed: {
     numOfGuests() {
       return this.$store.state.numOfGuests
+    },
+    menu() {
+      return this.$store.state.menu
     }
   },
   methods: {

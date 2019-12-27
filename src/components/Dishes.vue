@@ -13,14 +13,14 @@
         </select>
       <button type="submit" class="pure-button" @click="search">Search</button>
     </form>
-
-    <p>searchObj.type: {{searchObj.type}} searchObj.query: {{searchObj.query}}</p>
     <ul>
        <!-- !! THIS COULD BE MADE REUSABLE FOR OTHER VIEWS-->
       <em v-if='status === "LOADING"'>Loading...</em>
       <b v-else-if='status === "ERROR"'>Failed to load data, please try again</b>
       <li v-for="dish in dishes" :id="dish.id" :key="dish.id">
-        {{ dish.title }}
+        <router-link
+         :to="{ name: 'details', params: { id: dish.id }}"> {{ dish.title }}
+        </router-link>
       </li>
     </ul>
   </div>
@@ -35,9 +35,7 @@
     mounted() {
       // when data is retrieved we update it's properties
       // this will cause the component to re-render
-      this.$store.dispatch('search', this.searchObj)
-        .then( () => this.status = 'LOADED')
-        .catch( () => this.status = 'ERROR');
+      this.search();
 
     },
     data() {
@@ -71,6 +69,7 @@
           .then( () => this.status = 'LOADED')
           .catch( () => this.status = 'ERROR');
       }
+      // ADD A CLEAR SEARCHRESULT METHOD ON SEARCH
       }
     }
 </script>
