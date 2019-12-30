@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div class="container color-3" id="sidebar">
     <h3>This is the sidebar</h3>
     <p>
       People:
