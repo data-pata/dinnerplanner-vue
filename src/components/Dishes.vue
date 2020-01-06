@@ -39,13 +39,28 @@
   export default {
     mounted() {
       this.search();
+      this.scroll();
     },
     created() {
       this.debouncedSearch = this.debounce(this.search.bind(this), 1500);
+
+      //window.addEventListener('scroll', this.handleScroll);
+      
+      // this.scroll = () => {
+      //   window.onscroll = () => {
+      //     let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+      //     if (bottomOfWindow) {
+      //       alert('BOTTOM SCROLL DETECTED 2')
+      //     }
+      //   }
+      // }
     },
+    // destroyed() {
+    //   window.removeEventListener('scroll',this.handleScroll);
+    // },
     data() {
       return {
-        status: "LOADING",
+        status: 'LOADING',
         dishTypes: [{key:'All', value:''},
           {key:'Main Course', value:'main%20course'},
           {key:'Side Dish',value:'side%20dish'},
@@ -61,16 +76,13 @@
         ],  
         searchObj: {query:'', type:''}        
       }
-    }
-    , computed: {
+    }, 
+    computed: {
       dishes() {
         return this.$store.state.searchResults
       }
     },
     methods: {
-      // debouncedSearch: function () { 
-      //   this.debounce(this.search.bind(this), 2000)
-      // },
       search: function () {
         let context = this;
         context.status='LOADING';
@@ -78,7 +90,7 @@
           .then( () => context.status = 'LOADED')
           .catch( () => context.status = 'ERROR');
       },
-      // credit david walsh / underscore.js  
+      // credit david walsh / underscore.js 
       debounce: function (func, wait, immediate) {
         var timeout;
 
@@ -91,16 +103,31 @@
             if (!immediate) func.apply(context, args);
           };
 
-        var callNow = immediate && !timeout;
-    
-        clearTimeout(timeout);
-
-        timeout = setTimeout(later, wait);
-    
-        if (callNow) func.apply(context, args);
-      }
-      // ADD A CLEAR SEARCHRESULT METHOD ON SEARCH
-    }
+          var callNow = immediate && !timeout;
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+          if (callNow) func.apply(context, args);
+        }
+      },
+      scroll: function() {
+        window.onscroll = () => {
+          //alert('scrolling')
+          /* does not work. test:
+          document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+          */
+          let bottomOfWindow = (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
+          if (bottomOfWindow) {
+            alert("BOTTOM SCROLL DETECTED")
+          }
+        }
+      },
+      // handleScroll() {
+      //   let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+      //     if (bottomOfWindow) {
+      //       console.log("BOTTOM SCROLL DETECTED")
+      //         alert('reached rock bottom')
+      //     }
+      // }
   }
 }
 </script>
